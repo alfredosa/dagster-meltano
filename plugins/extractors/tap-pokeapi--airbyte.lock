@@ -1,0 +1,79 @@
+{
+  "plugin_type": "extractors",
+  "name": "tap-pokeapi",
+  "namespace": "tap_airbyte",
+  "variant": "airbyte",
+  "label": "Pokeapi",
+  "docs": "https://hub.meltano.com/extractors/tap-pokeapi--airbyte",
+  "repo": "https://github.com/airbytehq/airbyte/tree/master/airbyte-integrations/connectors/source-pokeapi",
+  "pip_url": "git+https://github.com/MeltanoLabs/tap-airbyte-wrapper.git",
+  "executable": "tap-airbyte",
+  "description": "Pokemon API",
+  "logo_url": "https://hub.meltano.com/assets/logos/extractors/pokeapi.png",
+  "capabilities": [
+    "catalog",
+    "state",
+    "discover",
+    "about",
+    "stream-maps",
+    "schema-flattening"
+  ],
+  "settings_group_validation": [
+    [
+      "airbyte_spec.image",
+      "connector_config.pokemon_name"
+    ]
+  ],
+  "settings": [
+    {
+      "name": "airbyte_spec.image",
+      "kind": "string",
+      "value": "airbyte/source-pokeapi",
+      "label": "Airbyte Spec Image",
+      "description": "Airbyte image to run"
+    },
+    {
+      "name": "airbyte_spec.tag",
+      "kind": "string",
+      "value": "latest",
+      "label": "Airbyte Spec Tag",
+      "description": "Airbyte image tag"
+    },
+    {
+      "name": "docker_mounts",
+      "kind": "array",
+      "label": "Docker Mounts",
+      "description": "Docker mounts to make available to the Airbyte container. Expects a list of maps containing source, target, and type as is documented in the docker --mount documentation"
+    },
+    {
+      "name": "airbyte_config.pokemon_name",
+      "kind": "string",
+      "label": "Airbyte Config Pokemon Name",
+      "description": "Pokemon requested from the API."
+    },
+    {
+      "name": "stream_maps",
+      "kind": "object",
+      "label": "Stream Maps",
+      "description": "Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html)."
+    },
+    {
+      "name": "stream_map_config",
+      "kind": "object",
+      "label": "Stream Map Config",
+      "description": "User-defined config values to be used within map expressions."
+    },
+    {
+      "name": "flattening_enabled",
+      "kind": "boolean",
+      "label": "Flattening Enabled",
+      "description": "'True' to enable schema flattening and automatically expand nested properties."
+    },
+    {
+      "name": "flattening_max_depth",
+      "kind": "integer",
+      "label": "Flattening Max Depth",
+      "description": "The max depth to flatten schemas."
+    }
+  ]
+}

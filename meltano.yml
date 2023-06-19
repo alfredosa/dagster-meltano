@@ -1,0 +1,45 @@
+version: 1
+default_environment: dev
+project_id: f0b82f39-bc97-488d-bc60-ae854e55699b
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-pokeapi
+    variant: airbyte
+    pip_url: git+https://github.com/MeltanoLabs/tap-airbyte-wrapper.git
+    config:
+      flattening_enabled: false
+      flattening_max_depth: 1
+      airbyte_config:
+        pokemon_name: mewtwo
+  - name: tap-github
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-github.git
+    config:
+      flattening_enabled: true
+      flattening_max_depth: 1
+      repositories:
+      - alfredosa/onestack
+      - alfredosa/airflow-dbt-metabase
+      start_date: '2021-12-31'
+  loaders:
+  - name: target-postgres
+    variant: transferwise
+    pip_url: pipelinewise-target-postgres
+    config:
+      host: postgres-meltano
+      user: dagstermeltano
+      dbname: postgres-meltano
+      default_target_schema: public
+      flush_all_streams: false
+  utilities:
+  - name: dagster
+    variant: quantile-development
+    pip_url: dagster-ext
+jobs:
+- name: github-postgres
+  tasks:
+  - tap-github target-postgres

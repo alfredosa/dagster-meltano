@@ -1,0 +1,257 @@
+Metadata-Version: 2.1
+Name: dagster
+Version: 1.3.10
+Summary: The data orchestration platform built for productivity.
+Author: Elementl
+Author-email: hello@elementl.com
+License: Apache-2.0
+Project-URL: Homepage, https://dagster.io
+Project-URL: GitHub, https://github.com/dagster-io/dagster
+Project-URL: Changelog, https://github.com/dagster-io/dagster/releases
+Project-URL: Issue Tracker, https://github.com/dagster-io/dagster/issues
+Project-URL: Twitter, https://twitter.com/dagster
+Project-URL: YouTube, https://www.youtube.com/channel/UCfLnv9X8jyHTe6gJ4hVBo9Q
+Project-URL: Slack, https://dagster.io/slack
+Project-URL: Blog, https://dagster.io/blog
+Project-URL: Newsletter, https://dagster.io/newsletter-signup
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: click (>=5.0)
+Requires-Dist: coloredlogs (<=14.0,>=6.1)
+Requires-Dist: Jinja2
+Requires-Dist: PyYAML (>=5.1)
+Requires-Dist: alembic (!=1.11.0,!=1.6.3,!=1.7.0,>=1.2.1)
+Requires-Dist: croniter (>=0.3.34)
+Requires-Dist: packaging (>=20.9)
+Requires-Dist: pendulum
+Requires-Dist: protobuf (>=3.20.0)
+Requires-Dist: python-dateutil
+Requires-Dist: python-dotenv
+Requires-Dist: pytz
+Requires-Dist: requests
+Requires-Dist: setuptools
+Requires-Dist: tabulate
+Requires-Dist: tomli
+Requires-Dist: tqdm
+Requires-Dist: typing-extensions (>=4.4.0)
+Requires-Dist: sqlalchemy (>=1.0)
+Requires-Dist: toposort (>=1.0)
+Requires-Dist: watchdog (>=0.8.3)
+Requires-Dist: docstring-parser
+Requires-Dist: universal-pathlib
+Requires-Dist: pydantic (!=1.10.7)
+Requires-Dist: psutil (>=1.0) ; platform_system == "Windows"
+Requires-Dist: pywin32 (!=226) ; platform_system == "Windows"
+Requires-Dist: grpcio (<1.48.0,>=1.44.0) ; python_version < "3.11"
+Requires-Dist: grpcio-health-checking (<1.48.0,>=1.44.0) ; python_version < "3.11"
+Requires-Dist: contextvars ; python_version < "3.7"
+Requires-Dist: grpcio (>=1.44.0) ; python_version >= "3.11"
+Requires-Dist: grpcio-health-checking (>=1.44.0) ; python_version >= "3.11"
+Provides-Extra: black
+Requires-Dist: black[jupyter] (==22.12.0) ; extra == 'black'
+Provides-Extra: docker
+Requires-Dist: docker ; extra == 'docker'
+Provides-Extra: mypy
+Requires-Dist: mypy (==0.991) ; extra == 'mypy'
+Provides-Extra: pyright
+Requires-Dist: pyright (==1.1.298) ; extra == 'pyright'
+Requires-Dist: pandas-stubs ; extra == 'pyright'
+Requires-Dist: types-backports ; extra == 'pyright'
+Requires-Dist: types-certifi ; extra == 'pyright'
+Requires-Dist: types-chardet ; extra == 'pyright'
+Requires-Dist: types-croniter ; extra == 'pyright'
+Requires-Dist: types-cryptography ; extra == 'pyright'
+Requires-Dist: types-mock ; extra == 'pyright'
+Requires-Dist: types-paramiko ; extra == 'pyright'
+Requires-Dist: types-pkg-resources ; extra == 'pyright'
+Requires-Dist: types-pyOpenSSL ; extra == 'pyright'
+Requires-Dist: types-python-dateutil ; extra == 'pyright'
+Requires-Dist: types-PyYAML ; extra == 'pyright'
+Requires-Dist: types-pytz ; extra == 'pyright'
+Requires-Dist: types-requests ; extra == 'pyright'
+Requires-Dist: types-simplejson ; extra == 'pyright'
+Requires-Dist: types-six ; extra == 'pyright'
+Requires-Dist: types-sqlalchemy (==1.4.53.34) ; extra == 'pyright'
+Requires-Dist: types-tabulate ; extra == 'pyright'
+Requires-Dist: types-tzlocal ; extra == 'pyright'
+Requires-Dist: types-toml ; extra == 'pyright'
+Provides-Extra: ruff
+Requires-Dist: ruff (==0.0.255) ; extra == 'ruff'
+Provides-Extra: test
+Requires-Dist: docker ; extra == 'test'
+Requires-Dist: mock (==3.0.5) ; extra == 'test'
+Requires-Dist: objgraph ; extra == 'test'
+Requires-Dist: pytest-cov (==2.10.1) ; extra == 'test'
+Requires-Dist: pytest-dependency (==0.5.1) ; extra == 'test'
+Requires-Dist: pytest-mock (==3.3.1) ; extra == 'test'
+Requires-Dist: pytest-rerunfailures (==10.0) ; extra == 'test'
+Requires-Dist: pytest-runner (==5.2) ; extra == 'test'
+Requires-Dist: pytest-xdist (==2.1.0) ; extra == 'test'
+Requires-Dist: pytest (==7.0.1) ; extra == 'test'
+Requires-Dist: responses ; extra == 'test'
+Requires-Dist: snapshottest (==0.6.0) ; extra == 'test'
+Requires-Dist: tox (==3.25.0) ; extra == 'test'
+Requires-Dist: yamllint ; extra == 'test'
+Requires-Dist: grpcio-tools (<1.48.0,>=1.44.0) ; (python_version < "3.11") and extra == 'test'
+Requires-Dist: grpcio-tools (>=1.44.0) ; (python_version >= "3.11") and extra == 'test'
+Requires-Dist: buildkite-test-collector ; (python_version >= "3.8") and extra == 'test'
+
+<div align="center">
+  <!-- Note: Do not try adding the dark mode version here with the `picture` element, it will break formatting in PyPI -->
+  <a target="_blank" href="https://dagster.io" style="background:none">
+    <img alt="dagster logo" src=".github/dagster-readme-header.svg" width="auto" height="100%">
+  </a>
+<p style="text-align: center;">Remember to <a target="_blank" href="https://github.com/dagster-io/dagster">star the Dagster GitHub repo</a> for future reference.</p>
+  <a target="_blank" href="https://github.com/dagster-io/dagster" style="background:none">
+    <img src="https://img.shields.io/github/stars/dagster-io/dagster?labelColor=4F43DD&color=163B36&logo=github">
+  </a>
+  <a target="_blank" href="https://github.com/dagster-io/dagster/blob/master/LICENSE" style="background:none">
+    <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?label=license&labelColor=4F43DD&color=163B36">
+  </a>
+  <a target="_blank" href="https://pypi.org/project/dagster/" style="background:none">
+    <img src="https://img.shields.io/pypi/v/dagster?labelColor=4F43DD&color=163B36">
+  </a>
+  <a target="_blank" href="https://pypi.org/project/dagster/" style="background:none">
+    <img src="https://img.shields.io/pypi/pyversions/dagster?labelColor=4F43DD&color=163B36">
+  </a>
+  <a target="_blank" href="https://twitter.com/dagster" style="background:none">
+    <img src="https://img.shields.io/badge/twitter-dagster-blue.svg?labelColor=4F43DD&color=163B36&logo=twitter" />
+  </a>
+  <a target="_blank" href="https://dagster.io/slack" style="background:none">
+    <img src="https://img.shields.io/badge/slack-dagster-blue.svg?labelColor=4F43DD&color=163B36&logo=slack" />
+  </a>
+  <a target="_blank" href="https://linkedin.com/showcase/dagster" style="background:none">
+    <img src="https://img.shields.io/badge/linkedin-dagster-blue.svg?labelColor=4F43DD&color=163B36&logo=linkedin" />
+  </a>
+</div>
+
+__Dagster is a cloud-native data pipeline orchestrator for the whole development lifecycle, with integrated lineage and observability, a declarative programming model, and best-in-class testability.__
+
+It is designed for **developing and maintaining data assets**, such as tables, data sets, machine learning models, and reports.
+
+With Dagster, you declare—as Python functions—the data assets that you want to build. Dagster then helps you run your functions at the right time and keep your assets up-to-date.
+
+Here is an example of a graph of three assets defined in Python:
+
+```python
+from dagster import asset
+from pandas import DataFrame, read_html, get_dummies
+from sklearn.linear_model import LinearRegression
+
+@asset
+def country_populations() -> DataFrame:
+    df = read_html("https://tinyurl.com/mry64ebh")[0]
+    df.columns = ["country", "continent", "rg", "pop2018", "pop2019", "change"]
+    df["change"] = df["change"].str.rstrip("%").str.replace("−", "-").astype("float")
+    return df
+
+@asset
+def continent_change_model(country_populations: DataFrame) -> LinearRegression:
+    data = country_populations.dropna(subset=["change"])
+    return LinearRegression().fit(get_dummies(data[["continent"]]), data["change"])
+
+@asset
+def continent_stats(country_populations: DataFrame, continent_change_model: LinearRegression) -> DataFrame:
+    result = country_populations.groupby("continent").sum()
+    result["pop_change_factor"] = continent_change_model.coef_
+    return result
+```
+The graph loaded into Dagster's web UI:
+
+<p align="center">
+  <img width="400px" alt="An example asset graph as rendered in the Dagster UI" src="https://user-images.githubusercontent.com/654855/183537484-48dde394-91f2-4de0-9b17-a70b3e9a3823.png">
+</p>
+
+Dagster is built to be used at every stage of the data development lifecycle - local development, unit tests, integration tests, staging environments, all the way up to production.
+
+## Quick Start:
+
+If you're new to Dagster, we recommend reading about its [core concepts](https://docs.dagster.io/concepts) or learning with the hands-on [tutorial](https://docs.dagster.io/tutorial).
+
+Dagster is available on PyPI and officially supports Python 3.7+.
+
+```bash
+pip install dagster dagit
+```
+
+This installs two modules:
+
+- **Dagster**: The core programming model.
+- **Dagit**: The web interface for developing and operating Dagster jobs and assets.
+
+Running on Using a Mac with an M1 or M2 chip? Check the [install details here](https://docs.dagster.io/getting-started/install#installing-dagster-into-an-existing-python-environment).
+
+## Documentation
+
+You can find the full Dagster documentation [here](https://docs.dagster.io), including the ['getting started' guide](https://docs.dagster.io/getting-started).
+
+<hr/>
+
+## Key Features:
+
+  <p align="center">
+    <img width="100%" alt="image" src=".github/key-features-cards.svg">
+  </p>
+
+### Dagster as a productivity platform
+Identify the key assets you need to create using a declarative approach, or you can focus on running basic tasks. Embrace CI/CD best practices from the get-go: build reusable components, spot data quality issues, and flag bugs early.
+
+### Dagster as a robust orchestration engine
+Put your pipelines into production with a robust multi-tenant, multi-tool engine that scales technically and organizationally.
+
+### Dagster as a unified control plane
+Maintain control over your data as the complexity scales. Centralize your metadata in one tool with built-in observability, diagnostics, cataloging, and lineage. Spot any issues and identify performance improvement opportunities.
+
+<hr />
+
+## Master the Modern Data Stack with integrations
+
+Dagster provides a growing library of integrations for today’s most popular data tools. Integrate with the tools you already use, and deploy to your infrastructure.
+
+<br/>
+<p align="center">
+    <a target="_blank" href="https://dagster.io/integrations" style="background:none">
+        <img width="100%" alt="image" src=".github/integrations-bar-for-readme.png">
+    </a>
+</p>
+
+## Community
+
+Connect with thousands of other data practitioners building with Dagster. Share knowledge, get help,
+and contribute to the open-source project. To see featured material and upcoming events, check out
+our [Dagster Community](https://dagster.io/community) page.
+
+Join our community here:
+
+- 🌟 [Star us on Github](https://github.com/dagster-io/dagster)
+- 📥 [Subscribe to our Newsletter](https://dagster.io/newsletter-signup)
+- 🐦 [Follow us on Twitter](https://twitter.com/dagster)
+- 🕴️ [Follow us on LinkedIn](https://linkedin.com/showcase/dagster)
+- 📺 [Subscribe to our YouTube channel](https://www.youtube.com/channel/UCfLnv9X8jyHTe6gJ4hVBo9Q)
+- 📚 [Read our blog posts](https://dagster.io/blog)
+- 👋 [Join us on Slack](https://dagster.io/slack)
+- 🗃 [Browse Slack archives](https://discuss.dagster.io)
+- ✏️ [Start a Github Discussion](https://github.com/dagster-io/dagster/discussions)
+
+## Contributing
+
+For details on contributing or running the project for development, check out our [contributing
+guide](https://docs.dagster.io/community/contributing/).
+
+## License
+
+Dagster is [Apache 2.0 licensed](https://github.com/dagster-io/dagster/blob/master/LICENSE).

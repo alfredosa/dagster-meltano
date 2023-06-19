@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dagstermeltano"
+version = "0.1.0"
+description = ""
+authors = ["alfredo-ben <alfredo@thanksben.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+meltano = "^2.19.1"
+dagster-meltano = "^1.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

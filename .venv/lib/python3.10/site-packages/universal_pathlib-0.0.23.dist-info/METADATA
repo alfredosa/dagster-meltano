@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: universal_pathlib
+Version: 0.0.23
+Summary: Pathlib API extended to use fsspec backends
+Home-page: https://github.com/fsspec/universal_pathlib
+License: MIT
+Keywords: 
+Author: Andrew Fulton
+Author-email: andrewfulton9@gmail.com
+Maintainer: Andrew Fulton
+Maintainer-email: andrewfulton9@gmail.com
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: fsspec
+Requires-Dist: aiohttp ; extra == "test"
+Requires-Dist: adlfs ; extra == "test"
+Requires-Dist: flake8 ; extra == "test"
+Requires-Dist: gcsfs ; extra == "test"
+Requires-Dist: hadoop-test-cluster ; extra == "test"
+Requires-Dist: ipython ; extra == "test"
+Requires-Dist: jupyter ; extra == "test"
+Requires-Dist: moto ; extra == "test"
+Requires-Dist: pyarrow ; extra == "test"
+Requires-Dist: pylint ; extra == "test"
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: requests ; extra == "test"
+Requires-Dist: s3fs ; extra == "test"
+Requires-Dist: webdav4[fsspec] ; extra == "test"
+Provides-Extra: dev
+Provides-Extra: doc
+Provides-Extra: test
+
+# Universal Pathlib
+
+Universal Pathlib is a python library that aims to extend Python's built-in [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html) api to use a variety of backend filesystems using [`fsspec`](https://filesystem-spec.readthedocs.io/en/latest/intro.html)
+
+## Installation
+
+### Pypi
+
+```bash
+pip install universal_pathlib
+```
+
+### conda
+
+```bash
+conda install -c conda-forge universal_pathlib
+```
+
+## Basic Usage
+
+```python
+>>> from upath import UPath
+>>> import s3fs
+
+>>> s3path = UPath("s3://test_bucket") / "example.txt"
+>>> s3path.name
+example.txt
+>>> s3path.stem
+example
+>>> s3path.suffix
+.txt
+>>> s3path.exists()
+True
+>>> s3path.read_text()
+'Hello World'
+```
+
+For more examples, see the [example notebook here](notebooks/examples.ipynb)
+
+### Currently supported filesystems (and schemes)
+
+- `file:` Local filessystem
+- `memory:` Ephemeral filesystem in RAM
+- `az:`, `adl:` and `abfs:` Azure Storage (requires `adlfs` to be installed)
+- `http:` and `https:` HTTP(S)-based filesystem
+- `hdfs:` Hadoop distributed filesystem
+- `gs:` and `gcs:` Google Cloud Storage (requires `gcsfs` to be installed)
+- `s3:` and `s3a:` AWS S3 (requires `s3fs` to be installed)
+- `webdav+http:` and `webdav+https:` WebDAV-based filesystem on top of HTTP(S) (requires `webdav4[fsspec]` to be installed)
+
+Other fsspec-compatible filesystems may also work, but are not supported and tested.
+Contributions for new filesystems are welcome!
+
+## License
+
+MIT License
+

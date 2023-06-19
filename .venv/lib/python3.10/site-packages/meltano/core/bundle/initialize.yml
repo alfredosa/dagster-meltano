@@ -1,0 +1,27 @@
+meltano.yml: |
+  version: 1
+  default_environment: dev
+  project_id: 00000000-0000-0000-0000-000000000000
+  env: {}
+  environments:
+  - name: dev
+    env: {}
+  - name: staging
+    env: {}
+  - name: prod
+    env: {}
+README.md: ""
+requirements.txt: ""
+output/.gitignore: |
+  *
+  !.gitignore
+.gitignore: |
+  /venv
+  /.meltano
+  .env
+extract/.gitkeep: ""
+load/.gitkeep: ""
+transform/.gitkeep: ""
+analyze/.gitkeep: ""
+notebook/.gitkeep: ""
+orchestrate/.gitkeep: ""
